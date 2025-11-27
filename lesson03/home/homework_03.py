@@ -33,7 +33,7 @@ max_students_count = 30
 Використайте правильне іменування змінних.
 """
 course_name = "Автоматизація тестування за допомогою Selenium WebDriver (Python)"
-number_of_hours = 48
+course_len_hours = 48
 course_cost = 17600
 
 """
@@ -41,7 +41,7 @@ course_cost = 17600
 Затрати курсу  = кількість годин / вартість курсу
 Використайте правильне іменування змінних.
 """
-course_expenses = number_of_hours / course_cost
+course_expenses = course_len_hours / course_cost
 print("Затрати курсу", course_name, "становлять", course_expenses)
 
 """
@@ -63,40 +63,41 @@ octal_number = 0o52
 a = 17
 b = 5
 sum = a + b
-print("Сума чисел 17 і 5 становить", sum)
+print(f'Сума чисел {a} і {b} становить: {sum}')
 
 subtraction_1 = a - b
-print("Віднімання 5 від 17 становить", subtraction_1)
+print(f'Віднімання {b} від {a} становить: {subtraction_1}')
 
 subtraction_2 = b - a
-print("Віднімання 17 від 5 становить", subtraction_2)
+print(f'Віднімання {a} від {b} становить: {subtraction_2}')
 
 multiplication = a * b
-print("Множення чисел 17 і 5 становить", multiplication)
+print(f'Множення чисел {a} і {b} становить: {multiplication}')
 
 division_1 = a / b
-print("Просте ділення 17 на 5 становить", division_1)
+print(f'Просте ділення {a} на {b} становить: {division_1}')
 
 division_2 = b / a
-print("Просте ділення 5 на 17 становить", division_2)
+print(f'Просте ділення {b} на {a} становить: {division_2}')
 
 integer_division_1 = a // b
-print("Цілочисельне ділення 17 на 5 становить", integer_division_1)
+print(f'Цілочисельне ділення {a} на {b} становить: {integer_division_1}')
 
 integer_division_2 = b // a
-print("Цілочисельне ділення 5 на 17 становить", integer_division_2)
+print(f'Цілочисельне ділення {b} на {a} становить: {integer_division_2}')
 
 remainder_from_division_1 = a % b
-print("Залишок від ділення 17 на 5 становить", remainder_from_division_1)
+print(f'Залишок від ділення {a} на {b} становить: {remainder_from_division_1}')
 
 remainder_from_division_2 = b % a
-print("Залишок від ділення 5 на 17 становить", remainder_from_division_2)
+print(f'Залишок від ділення {b} на {a} становить: {remainder_from_division_2}')
 
 extension_1 = a ** b
-print("Піднесення 17 в ступінь 5 становить", extension_1)
+print(f'Піднесення {a} в ступінь {b} становить: {extension_1}')
 
 extension_2 = b ** a
-print("Піднесення 5 в ступінь 17 становить", extension_2)
+print(f'Піднесення {b} в ступінь {a} становить: {extension_2}')
+
 
 """
 **8.** Обчисліть площу кола з радіусом 7.5. Використайте значення π = 3.14159.
