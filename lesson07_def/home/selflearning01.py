@@ -22,11 +22,11 @@
 # Опрацюйте цей випадок, щоб функція повертала None для max та min, якщо список порожній.
 #
 # Приклад: analyze_list([1, 2, 3, 4, 5]) повинна повернути {'sum': 15, 'max': 5, 'min': 1, 'len': 5}
-def analyze_list(numbers):
+def analyze_list(numbers: list):
     if not numbers:
         return {'sum': 0, 'max': None, 'min': None, 'len': 0}
     return {
-        # Ваш код тут
+        'sum': sum(numbers), 'max': max(numbers), 'min': min(numbers), 'len': len(numbers)
     }
 
 # -------------------------------------------------------------------------------------
@@ -44,9 +44,11 @@ def analyze_list(numbers):
 # print(sorted_list)  # повинно вивести [1, 2, 5, 8]
 # print(original_list) # повинно вивести [5, 2, 8, 1]
 def get_sorted_list(numbers):
-    # Ваш код тут
-    return 
+    print(sorted(numbers))
+    print(numbers)
+    return sorted(numbers)
 
+#get_sorted_list([1, 2, 5, 3])
 # -------------------------------------------------------------------------------------
 
 # Завдання 3: Створення функції з аргументами за замовчуванням
@@ -76,7 +78,10 @@ def greet(name, greeting="Привіт"):
 # multiply_all() повинна повернути 1
 def multiply_all(*args):
     # Ваш код тут   
-    return 
+    x = 1 
+    for arg in args: 
+        x = x * arg
+    return x
 
 # -------------------------------------------------------------------------------------
 
@@ -115,11 +120,28 @@ def create_profile(**kwargs):
 #
 # format_data("Cities", "Kyiv", "Lviv")
 # повинна повернути: "Cities: Item: Kyiv, Item: Lviv"
-def format_data(main_title, *items, **options):
-    # Ваш код тут
 
-    return 
+# def format_data(main_title, *items, **options):
+    
+#     new_items = []
+#     if "prefix" in options and items:
+#         for item in items:
+#             prefix = options.get('prefix')
+#             new_items.append(f'{'prefix'}: {item}')
+#     elif 'prefix' not in options and items:
+#         prefix = "item"
 
+
+
+
+#     if "separator" in options and items:
+#         line = options.get('separator').join(new_items)            
+        
+#     return f'{main_title}: {line}'
+# out = format_data(main_title: "Products", *item: "Apple", "Banana", separator=" | ", prefix="Fruit")
+# print(out)
+# out_2 = format_data(main_title: "Cities", items: "Kyiv", "Lviv")
+# print(out_2)
 # -------------------------------------------------------------------------------------
 
 # Завдання 7: Лямбда-функції
