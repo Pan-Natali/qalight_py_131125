@@ -36,8 +36,8 @@ def get_timingExbytes_incoming(filepath: Path):
            incoming = timing_exbytes.find('incoming') 
            if incoming is not None:
                return incoming.text
-           else:
-               print("Значення timingExbytes/incoming не знайдено")
+    return "Значення timingExbytes/incoming не знайдено"
+
 if __name__ == "__main__":
     xml_path = Path(__file__).parent / "groups.xml"
     result = get_timingExbytes_incoming(xml_path)   

@@ -1,59 +1,41 @@
+# Валідація JSON
+# Ваше завдання полягає в тому, щоб перевірити JSON-файли на коректність та вивести повідомлення про помилки, 
+# якщо вони є.
+
+# Приблизний алгоритм:
+# 1. Прочитайте JSON-файли "file_01.json", "file_02.json", "file_03.json".
+# 2. Використовуйте модуль `json` для валідації JSON.
+# 3. Якщо JSON некоректний, виведіть повідомлення про помилку.
+
 import json
 from pathlib import Path
 
-def read_json(filepath: Path) -> dict:
-    """
-    Читає JSON файл та повертає його вміст як Python об'єкт.
-    
-    Args:
-        filepath (Path): Шлях до JSON файла
-        
-    Returns:
-        dict/list: Вміст JSON файла
-        
-    Raises:
-        FileNotFoundError: Якщо файл не знайдено
-        json.JSONDecodeError: Якщо файл містить невалідний JSON
-    """
+def read_json(filepath : Path):
     try:
-        with open(filepath, "r", encoding="utf-8") as file:
-            content = json.load(file)
-            return content
-    except FileNotFoundError:
-            print("Файл не знайдено.")
+        # читаємо JSON-файли
+        with open (filepath, "r", encoding="utf-8") as file:
+            data = json.load(file)
+            print(f'Читаємо JSON-файл: {filepath.name}')
+            print(data)
+    
+        # виводимо повідомлення про помилку, якщо JSON некоректний (знаємо що File_02 дає JSONDecodeError)
     except json.JSONDecodeError as e:
-            print("JSON-дані мають неправильний формат і не можуть бути розібрані", e)
-        
+        print(f'{filepath.name}, Помилка розбору JSON:', e)
 
-def write_json(filepath: Path, content:dict) -> bool:
-    """
-    Записує Python об'єкт у JSON файл.
-    
-    Args:
-        data (dict/list): Дані для запису
-        filepath (Path): Шлях до файла для запису
-        
-    Returns:
-        bool: True якщо успішно записано, False в іншому випадку
-    """
-    try:
-        with open(filepath, "w", encoding="utf-8", ) as file:
-            json.dump(content, file, indent=4)
-            return filepath.exists()
-    except Exception as e:
-         print(f'Помилка при записі', e)
-         return False
+        # виводимо повідомлення про відсутність необхідних прав доступу
+    except PermissionError:
+        print(f'{filepath.name}, Немає прав доступу до файлу')
+
+        # виводимо повідомлення про те, що файл не знайдено. 
+        # Для валідації помилки додано шлях до неіснуючого файла file_04.json
+    except FileNotFoundError:
+        print(f'{filepath.name}, Файл не знайдено')
 
 if __name__ == "__main__":
     my_dir = Path(__file__).parent
-    my_json = Path(__file__).parent / "file_03.json"
-    if not my_json.exists:
-         write_json(my_json, {"info": "initial data"})
-    content = read_json(my_json)
-    print(f'Прочитано з файлу:', content, type(content))
-    json_string = '{"name": "Ivan", "age": 25, "city": "Kyiv", "pass": 95, "skip": 5,  "failed": 0, "is_failed": true}'
-    json_to = json.loads(json_string)
-    print(f'Конвертовано з рядка', json_to)
-    new_json = Path(__file__).parent / "new.json"
-    if write_json(new_json, json_to):
-         print(f'Новий файл успішно створено')
+
+    # оптимізуємо код за порадою Gemini, робимо список файлів для перевірки, 
+    # щоб не визначати файли 4 рази і не запускати 4 функції
+    json_files = ["file_01.json", "file_02.json", "file_03.json", "file_04.json"]
+    for filename in json_files:
+        read_json(my_dir / filename)
